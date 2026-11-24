@@ -1,0 +1,50 @@
+# ==============================================================================
+# .gitignore — Enterprise Inverted Whitelist (Default Deny / Zero Trust)
+# ==============================================================================
+
+# 1. Domyślne wykluczenie wszystkiego (Default Deny)
+*
+**/*
+
+# 2. Wybiórcze dopuszczenie zasobów repozytorium publicznego
+!.gitignore
+!.env.example
+!pyproject.toml
+!README.md
+!README.pl.md
+
+# GitHub Actions CI
+!.github/
+!.github/**
+
+# Showcase & Grafiki demonstracyjne
+!showcase/
+!showcase/**
+
+# Publiczna dokumentacja
+!docs/
+!docs/styleguide.md
+
+# Kod narzędzi i testy
+!tools/
+!tools/**
+!tests/
+!tests/**
+
+# 3. Obrona w głąb (Defense-in-Depth): rekursywna blokada wewnątrz tools/ i tests/
+tools/**/.env*
+tools/**/.ENV*
+tools/**/__pycache__/
+tools/**/*.py[cod]
+tools/**/.pytest_cache/
+tools/**/*.log
+tools/**/*.pid
+tools/**/*.hwnd
+tools/**/account_quotas.json
+tools/**/account_sessions/
+tools/**/*.db*
+tools/**/*-wal
+tools/**/*-shm
+tools/**/agent_hub.py
+tests/**/__pycache__/
+tests/**/.pytest_cache/
